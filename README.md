@@ -309,23 +309,22 @@ erDiagram
         datetime updated_at
     }
 
-    %% RELACIONAMENTOS
+    %% RELATIONSHIPS
+    users ||--o{ sessions : has
+    users ||--o{ personal_access_tokens : has
+    users ||--o{ medication_queries : has
+    users ||--o{ user_allergies : has
+    users ||--o{ user_medication_courses : has
+    users ||--o{ treatment_plans : has
+    users ||--o{ prescription_uploads : has
+    users ||--o{ assistant_messages : has
 
-    users ||--o{ sessions : "1:N"
-    users ||--o{ personal_access_tokens : "1:N"
-    users ||--o{ medication_queries : "1:N"
-    users ||--o{ user_allergies : "1:N"
-    users ||--o{ user_medication_courses : "1:N"
-    users ||--o{ treatment_plans : "1:N"
-    users ||--o{ prescription_uploads : "1:N"
-    users ||--o{ assistant_messages : "1:N"
+    medications ||--o{ medication_queries : has
+    medications ||--o{ user_medication_courses : has
+    medications ||--o{ treatment_plan_items : has
 
-    medications ||--o{ medication_queries : "1:N"
-    medications ||--o{ user_medication_courses : "1:N"
-    medications ||--o{ treatment_plan_items : "1:N"
-
-    treatment_plans ||--o{ treatment_plan_items : "1:N"
-    treatment_plan_items ||--o{ treatment_plan_schedules : "1:N"
+    treatment_plans ||--o{ treatment_plan_items : has
+    treatment_plan_items ||--o{ treatment_plan_schedules : has
 ```
 
 ## Fluxos da aplicação
