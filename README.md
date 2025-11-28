@@ -62,254 +62,254 @@ php artisan serve
 ## Diagrama do Banco de Dados
 
 ```mermaid
+%%{init: {'layout': 'dagre'}}%%
 erDiagram
 
     users {
-        string id PK
-        string name
-        string email UNIQUE
-        datetime email_verified_at
-        string password
-        string remember_token
-        string phone
-        string avatar_path
-        string preferences
-        datetime last_assistant_interaction_at
-        datetime created_at
-        datetime updated_at
+        id string PK
+        name string
+        email string
+        email_verified_at datetime
+        password string
+        remember_token string
+        phone string
+        avatar_path string
+        preferences json
+        last_assistant_interaction_at datetime
+        created_at datetime
+        updated_at datetime
     }
 
     password_reset_tokens {
-        string email PK
-        string token
-        datetime created_at
+        email string PK
+        token string
+        created_at datetime
     }
 
     sessions {
-        string id PK
-        string user_id FK
-        string ip_address
-        string user_agent
-        string payload
-        int last_activity
+        id string PK
+        user_id string
+        ip_address string
+        user_agent string
+        payload text
+        last_activity int
     }
 
     personal_access_tokens {
-        int id PK
-        string tokenable_type
-        string tokenable_id
-        string name
-        string token UNIQUE
-        string abilities
-        datetime last_used_at
-        datetime expires_at
-        datetime created_at
-        datetime updated_at
+        id int PK
+        tokenable_type string
+        tokenable_id string
+        name string
+        token string
+        abilities text
+        last_used_at datetime
+        expires_at datetime
+        created_at datetime
+        updated_at datetime
     }
 
     cache {
-        string key PK
-        string value
-        int expiration
+        key string PK
+        value text
+        expiration int
     }
 
     cache_locks {
-        string key PK
-        string owner
-        int expiration
+        key string PK
+        owner string
+        expiration int
     }
 
     jobs {
-        int id PK
-        string queue
-        string payload
-        int attempts
-        datetime reserved_at
-        datetime available_at
-        datetime created_at
+        id int PK
+        queue string
+        payload text
+        attempts int
+        reserved_at datetime
+        available_at datetime
+        created_at datetime
     }
 
     job_batches {
-        string id PK
-        string name
-        int total_jobs
-        int pending_jobs
-        int failed_jobs
-        string failed_job_ids
-        string options
-        datetime cancelled_at
-        datetime created_at
-        datetime finished_at
+        id string PK
+        name string
+        total_jobs int
+        pending_jobs int
+        failed_jobs int
+        failed_job_ids text
+        options text
+        cancelled_at datetime
+        created_at datetime
+        finished_at datetime
     }
 
     failed_jobs {
-        int id PK
-        string uuid UNIQUE
-        string connection
-        string queue
-        string payload
-        string exception
-        datetime failed_at
+        id int PK
+        uuid string
+        connection string
+        queue string
+        payload text
+        exception text
+        failed_at datetime
     }
 
     medications {
-        int id PK
-        string name
-        string slug UNIQUE
-        string human_summary
-        string posology
-        string indications
-        string contraindications
-        string interaction_alerts
-        string composition
-        string half_life_notes
-        string storage_guidance
-        string disclaimer
-        string sources
-        string source
-        datetime fetched_at
-        string raw_payload
-        datetime created_at
-        datetime updated_at
+        id int PK
+        name string
+        slug string
+        human_summary text
+        posology text
+        indications text
+        contraindications text
+        interaction_alerts text
+        composition json
+        half_life_notes text
+        storage_guidance text
+        disclaimer text
+        sources json
+        source string
+        fetched_at datetime
+        raw_payload json
+        created_at datetime
+        updated_at datetime
     }
 
     medication_queries {
-        int id PK
-        int user_id FK
-        int medication_id FK
-        string query
-        string normalized_query
-        string status
-        boolean from_cache
-        int completion_tokens
-        int prompt_tokens
-        int total_tokens
-        int latency_ms
-        datetime created_at
-        datetime updated_at
+        id int PK
+        user_id int
+        medication_id int
+        query text
+        normalized_query text
+        status string
+        from_cache boolean
+        completion_tokens int
+        prompt_tokens int
+        total_tokens int
+        latency_ms int
+        created_at datetime
+        updated_at datetime
     }
 
     missing_medications {
-        int id PK
-        string name
-        string slug UNIQUE
-        int occurrences
-        string notes
-        datetime last_requested_at
-        string context
-        datetime created_at
-        datetime updated_at
+        id int PK
+        name string
+        slug string
+        occurrences int
+        notes text
+        last_requested_at datetime
+        context json
+        created_at datetime
+        updated_at datetime
     }
 
     user_allergies {
-        int id PK
-        int user_id FK
-        string allergen
-        string allergen_slug
-        string reaction
-        string severity
-        string notes
-        string metadata
-        datetime created_at
-        datetime updated_at
+        id int PK
+        user_id int
+        allergen string
+        allergen_slug string
+        reaction string
+        severity string
+        notes text
+        metadata json
+        created_at datetime
+        updated_at datetime
     }
 
     user_medication_courses {
-        int id PK
-        int user_id FK
-        int medication_id FK
-        string medication_name
-        string dosage
-        string route
-        string frequency
-        int interval_minutes
-        datetime start_at
-        datetime end_at
-        boolean is_active
-        string prescribed_by
-        string diagnosis
-        string notes
-        string metadata
-        datetime created_at
-        datetime updated_at
+        id int PK
+        user_id int
+        medication_id int
+        medication_name string
+        dosage string
+        route string
+        frequency string
+        interval_minutes int
+        start_at datetime
+        end_at datetime
+        is_active boolean
+        prescribed_by string
+        diagnosis string
+        notes text
+        metadata json
+        created_at datetime
+        updated_at datetime
     }
 
     treatment_plans {
-        int id PK
-        int user_id FK
-        string title
-        string status
-        string instructions
-        datetime start_at
-        datetime end_at
-        string source
-        boolean is_active
-        string metadata
-        datetime created_at
-        datetime updated_at
+        id int PK
+        user_id int
+        title string
+        status string
+        instructions text
+        start_at datetime
+        end_at datetime
+        source string
+        is_active boolean
+        metadata json
+        created_at datetime
+        updated_at datetime
     }
 
     treatment_plan_items {
-        int id PK
-        int treatment_plan_id FK
-        int medication_id FK
-        string medication_name
-        string dosage
-        string route
-        string instructions
-        int interval_minutes
-        int total_doses
-        int duration_days
-        datetime first_dose_at
-        datetime last_calculated_at
-        string metadata
-        datetime created_at
-        datetime updated_at
+        id int PK
+        treatment_plan_id int
+        medication_id int
+        medication_name string
+        dosage string
+        route string
+        instructions text
+        interval_minutes int
+        total_doses int
+        duration_days int
+        first_dose_at datetime
+        last_calculated_at datetime
+        metadata json
+        created_at datetime
+        updated_at datetime
     }
 
     treatment_plan_schedules {
-        int id PK
-        int treatment_plan_item_id FK
-        datetime scheduled_at
-        datetime taken_at
-        string status
-        int deviation_minutes
-        boolean was_skipped
-        string notes
-        string metadata
-        datetime created_at
-        datetime updated_at
+        id int PK
+        treatment_plan_item_id int
+        scheduled_at datetime
+        taken_at datetime
+        status string
+        deviation_minutes int
+        was_skipped boolean
+        notes text
+        metadata json
+        created_at datetime
+        updated_at datetime
     }
 
     prescription_uploads {
-        int id PK
-        int user_id FK
-        string original_name
-        string file_path
-        string status
-        string extracted_text
-        string parsed_payload
-        string failure_reason
-        datetime processed_at
-        datetime created_at
-        datetime updated_at
+        id int PK
+        user_id int
+        original_name string
+        file_path string
+        status string
+        extracted_text text
+        parsed_payload json
+        failure_reason text
+        processed_at datetime
+        created_at datetime
+        updated_at datetime
     }
 
     assistant_messages {
-        int id PK
-        int user_id FK
-        string message_uuid UNIQUE
-        string role
-        string content
-        string metadata
-        int prompt_tokens
-        int completion_tokens
-        int total_tokens
-        datetime created_at
-        datetime updated_at
+        id int PK
+        user_id int
+        message_uuid string
+        role string
+        content text
+        metadata json
+        prompt_tokens int
+        completion_tokens int
+        total_tokens int
+        created_at datetime
+        updated_at datetime
     }
 
-    %% RELATIONSHIPS
     users ||--o{ sessions : has
     users ||--o{ personal_access_tokens : has
     users ||--o{ medication_queries : has
@@ -325,6 +325,7 @@ erDiagram
 
     treatment_plans ||--o{ treatment_plan_items : has
     treatment_plan_items ||--o{ treatment_plan_schedules : has
+
 ```
 
 ## Fluxos da aplicação
