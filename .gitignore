@@ -1,0 +1,42 @@
+# Logs e arquivos temporários
+*.log
+Thumbs.db
+.DS_Store
+
+# ENV (nunca versionar)
+.env
+.env.backup
+.env.production
+.env.local
+.env.development
+.env.staging
+.env.testing
+.env.*.local
+
+# Históricos e lixos de editor / IDE
+.history/
+**/.history/
+.phpactor.json
+.phpunit.result.cache
+/.fleet
+/.idea
+/.nova
+/.phpunit.cache
+/.vscode
+/.zed
+
+# Node / frontend
+/node_modules
+/public/build
+/public/hot
+
+# Laravel / PHP
+/public/storage
+/storage/*.key
+/storage/pail
+/vendor
+Homestead.json
+Homestead.yaml
+
+# Composer / auth
+/auth.json
